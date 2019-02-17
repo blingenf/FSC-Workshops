@@ -55,8 +55,12 @@ GRANT INSERT ON flagdb.captures TO ‘flaguser’@'localhost’;
 ```
 
 ### Scoreboard
-Make sure flags.php is placed such that it is being hosted by the webserver.  
 Replace "[flaguser's password]" with the actual password.  
+Make sure flags.php is placed such that it is being hosted by the webserver.  
+Example, for apache:  
+Directory: /var/www/html  
+permissions: 770  
+owner / group: www-data  
 
 ## Usage
 To start server:

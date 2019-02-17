@@ -27,23 +27,40 @@
         if (array_key_exists($row[1], $scoreboard)) {
             $scoreboard[$row[1]]["flags"] += 1;
             $scoreboard[$row[1]]["points"] += $row[3];
+            if ($row[0] > $scoreboard[$row[1]]["lastcapture"])
+                $scoreboard[$row[1]]["lastcapture"] = $row[0];
         }
         else {
-            $scoreboard[$row[1]] = array(user => htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8'), flags => 1, points => $row[3]);
+            $scoreboard[$row[1]] = array(user => htmlspecialchars($row[1], ENT_QUOTES, 'UTF-8'), lastcapture => $row[0], flags => 1, points => $row[3]);
         }
     }
 
-    usort($scoreboard, function($a, $b) { return $b["points"] <=> $a["points"]; });
+    array_multisort(array_column($scoreboard, 'points'), SORT_DESC,
+                    array_column($scoreboard, 'lastcapture'),  SORT_ASC, $scoreboard);
 
     echo "<h2>Scoreboard</h2>\n";
-    echo "<table>\n";
-    foreach ($scoreboard as $index=>$score) {
+    echo "<table>\n<tr><th></th><th>Username</th><th>Flag Captures</th><th>Score</th><th>Most Recent Capture</th>\n";
+    $rank = 1;
+    foreach ($scoreboard as $score) {
+        $rowclass = ' class="other"';
+        if ($rank == 1)
+            $rowclass = ' class="first"';
+        else if ($rank == 2)
+            $rowclass = ' class="second"';
+        else if ($rank == 3)
+            $rowclass = ' class="third"';
+
         if ($score["flags"] == 1) {
-            echo "<tr><td>" . ($index + 1) . ". </td><td>" . $score["user"] . "</td><td>" . $score["flags"] . " flag</td><td>" . $score["points"] . " points</td></tr>\n";
+            echo "<tr><td" . $rowclass . ">" . $rank . ". </td><td>" . $score["user"]
+            . "</td><td>" . $score["flags"] . " flag</td><td>" . $score["points"]
+                 . " points</td><td>" .  date('Y-m-d H:i:s', $score["lastcapture"]) . "</td></tr>\n";
         }
         else {
-            echo "<tr><td>" . ($index + 1) . ".</td><td>" . $score["user"] . "</td><td>" . $score["flags"] . " flags</td><td>" . $score["points"] . " points</td></tr>\n";
+            echo "<tr><td" . $rowclass . ">" . $rank . ".</td><td>" . $score["user"]
+            . "</td><td>" . $score["flags"] . " flags</td><td>" . $score["points"]
+            . " points</td><td>" .  date('Y-m-d H:i:s', $score["lastcapture"]) . "</td></tr>\n";
         }
+        $rank += 1;
     }
     echo "</table>\n";
 
