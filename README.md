@@ -33,7 +33,7 @@ Directory: /var/run/flagserver
 owner / group: flaguser  
 permissions: 700  
 
-## Flag file
+### Flag file
 flag file: /var/lib/flagserver/flags  
 permissions: 700  
 format:  
@@ -44,7 +44,7 @@ etc.
 
 Flag number is assumed to be the index of the flag in the file.
 
-## MySQL Database
+### MySQL Database
 ```
 CREATE DATABSE flagdb;
 USE flagdb;
@@ -54,7 +54,7 @@ GRANT SELECT ON flagdb.captures TO ‘flaguser’@'localhost’;
 GRANT INSERT ON flagdb.captures TO ‘flaguser’@'localhost’;
 ```
 
-## Scoreboard
+### Scoreboard
 Make sure flags.php is placed such that it is being hosted by the webserver.  
 Replace "[flaguser's password]" with the actual password.  
 
