@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 
     struct sockaddr_un svr_addr, cli_addr;
     socklen_t cli_len;
-    char buf[54]{0};
+    char buf[55]{0};
     char* flag_buf;
     char* usr_buf;
     int fd, new_fd, n,  svr_len;
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
             exit(-1);
         }
 
-        n = read(new_fd, buf, 53);
+        n = read(new_fd, buf, 54);
         flag_buf = strtok(buf, " ");
         usr_buf = strtok(NULL, " ");
 

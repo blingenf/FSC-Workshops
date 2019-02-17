@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     struct sockaddr_un svr_addr;
     char flag_buf[21];
     char usr_buf[33];
-    char send_buf[54] {0};
+    char send_buf[55] {0};
     int fd, svr_len, n;
 
     if( (fd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1) {
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
 
     write(fd, send_buf, strlen(send_buf));
     memset(&send_buf, 0, sizeof(send_buf));
-    n = read(fd, send_buf, 53);
+    n = read(fd, send_buf, 54);
     printf("%s", send_buf);
     close(fd);
 
