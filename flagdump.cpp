@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-char socket_path[] = "/var/run/flagserver/flagsocket";
+char socket_path[] = "/var/lib/flagserver/flagsocket";
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {

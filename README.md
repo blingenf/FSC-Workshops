@@ -29,7 +29,8 @@ permissions: 700
 owner / group: flaguser
 
 ### Socket
-Directory: /var/run/flagserver  
+_Note: this was original at /var/run/flagserver, but due to issues with clearing on reboot I moved it_  
+Directory: /var/lib/flagserver  
 owner / group: flaguser  
 permissions: 700  
 
@@ -56,19 +57,19 @@ GRANT INSERT ON flagdb.captures TO ‘flaguser’@'localhost’;
 
 ### Scoreboard
 Replace "[flaguser's password]" with the actual password.  
-Make sure flags.php is placed such that it is being hosted by the webserver.  
+Make sure flags.php is placed such that it is being hosted by the webserver but cannot be seen by local users.  
 Example, for apache:  
 Directory: /var/www/html  
 permissions: 770  
 owner / group: www-data  
 
 ## Usage
-To start server:
+To start the server:
 ```
 sudo su flaguser
 flagserver
 ```
-To submit flag:
+To submit a flag:
 ```
 flagdump [flag]
 ```

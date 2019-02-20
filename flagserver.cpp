@@ -19,7 +19,7 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
-char socket_path[] = "/var/run/flagserver/flagsocket";
+char socket_path[] = "/var/lib/flagserver/flagsocket";
 
 int capture_flag(std::string user, int flagn, int value);
 
