@@ -31,7 +31,7 @@ permissions: 700
 owner / group: flaguser
 
 ### Socket
-_Note: this was original at /var/run/flagserver, but due to issues with clearing on reboot I moved it_  
+_Note: this was originally at /var/run/flagserver, but due to issues with clearing on reboot I moved it_  
 Directory: /var/lib/flagserver  
 owner / group: flaguser  
 permissions: 700  
