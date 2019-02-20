@@ -1,6 +1,6 @@
 # FSC-CTF
 CTF Infrastructure designed for the FSC Lab.  
-May or may not be secure.
+Coded in a single day, may or may not be secure. Use at your own risk!
 
 ## Host Configuration
 Must be set up on a machine or virtual machine configured with:
@@ -13,6 +13,8 @@ Must be set up on a machine or virtual machine configured with:
 Assumptions:
 - Usernames are no more than 32 characters long
 - Flags are no more than 20 characters long
+
+I chose to implement the flag server in C++ rather than as a web service with PHP because it was easy to set up with our existing domain (just attach the server to the domain -> everyone already has an account!).
 
 ## Setup
 ### flagdump
