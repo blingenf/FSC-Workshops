@@ -48,7 +48,7 @@ etc.
 Flag number is assumed to be the index of the flag in the file.
 
 ### MySQL Database
-```
+```SQL
 CREATE DATABSE flagdb;
 USE flagdb;
 CREATE TABLE captures(time INT, user VARCHAR(32), flagn INT, value INT);

@@ -1,2 +1,2 @@
 ## Exercises
-This folder will contain workshop exercises.
+This folder contains workshop exercise source code.

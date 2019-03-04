@@ -1,2 +1,2 @@
-## Exercises
-This folder will contain workshop solutions.
+## Solutions
+This folder contains workshop solutions
