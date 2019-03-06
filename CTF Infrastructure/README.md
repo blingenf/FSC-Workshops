@@ -1,8 +1,7 @@
 # FSC-CTF
-CTF Infrastructure designed for the FSC Lab.  
-Coded in a single day, may or may not be secure. Use at your own risk!
+Flag capture infrastructure designed for the FSC Lab.
 
-## Host Configuration
+## Configuration
 Must be set up on a machine or virtual machine configured with:
 - Webserver with PHP
 - MySQL
@@ -16,22 +15,28 @@ Assumptions:
 
 I chose to implement the flag server in C++ rather than as a web service with PHP because it was easy to set up with our existing domain (just attach the server to the domain -> everyone already has an account!).
 
+Everything other than flagdump.sh is placed on the flag server. Flagdump.sh is a simple bash script which connects to the flag server via ssh (the user has to enter their password, of course) and runs the flagdump command.
+
 ## Setup
-### flagdump
+### flagdump.sh (client side)
+Replace <flag server ip> with the ip of the flag server.
+location: /usr/local/bin/flagdump  
+permissions: 755
+
+### flagdump (server side)
 build: `g++ flagdump.cpp -o flagdump`  
-location: /usr/bin/flagdump  
+location: /usr/local/bin/flagdump  
 permissions: 6711
 owner / group: flaguser
 
 ### flagserver
 Replace "[flaguser's password]" with the actual password.  
 build: `g++ flagserver.cpp -o flagserver -lmysqlcppconn`  
-location: /usr/bin/flagdump  
+location: /usr/local/bin/flagdump  
 permissions: 700  
 owner / group: flaguser
 
 ### Socket
-_Note: this was originally at /var/run/flagserver, but due to issues with clearing on reboot I moved it_  
 Directory: /var/lib/flagserver  
 owner / group: flaguser  
 permissions: 700  
@@ -39,6 +44,7 @@ permissions: 700
 ### Flag file
 flag file: /var/lib/flagserver/flags  
 permissions: 700  
+owner: flaguser  
 format:  
 [flag] [flag value]  
 [flag] [flag value]  
@@ -53,8 +59,8 @@ CREATE DATABSE flagdb;
 USE flagdb;
 CREATE TABLE captures(time INT, user VARCHAR(32), flagn INT, value INT);
 CREATE USER 'flaguser'@'localhost' IDENTIFIED BY 'a good password';
-GRANT SELECT ON flagdb.captures TO ‘flaguser’@'localhost’;
-GRANT INSERT ON flagdb.captures TO ‘flaguser’@'localhost’;
+GRANT SELECT ON flagdb.captures TO 'flaguser'@'localhost';
+GRANT INSERT ON flagdb.captures TO 'flaguser'@'localhost';
 ```
 
 ### Scoreboard
@@ -63,7 +69,7 @@ Make sure flags.php is placed such that it is being hosted by the webserver but 
 Example, for apache:  
 Directory: /var/www/html  
 permissions: 770  
-owner / group: www-data  
+group: www-data  
 
 style.css should be in the same foler as flags.php.
 
@@ -73,7 +79,9 @@ To start the server:
 sudo su flaguser
 flagserver
 ```
-To submit a flag:
+To submit a flag (from any lab machine, or from the flag server):
 ```
 flagdump [flag]
 ```
+
+Note that the code currently running in the FSC lab has been updated from the provided code to retrieve users' full names from the domain. The cpp code and SQL database were modified to add this as an extra column, and PHP code was modified to show this instead of the username. This is entirely optional.
