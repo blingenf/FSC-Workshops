@@ -19,7 +19,7 @@ Everything other than flagdump.sh is placed on the flag server. Flagdump.sh is a
 
 ## Setup
 ### flagdump.sh (client side)
-Replace <flag server ip> with the ip of the flag server.
+Replace &lt;flag server ip&gt; with the ip of the flag server.
 location: /usr/local/bin/flagdump  
 permissions: 755
 
