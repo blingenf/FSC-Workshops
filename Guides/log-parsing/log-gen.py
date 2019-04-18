@@ -21,7 +21,7 @@ ip_weights = [e**(i/10) for i in range(10,89,2)]
 
 # distribution for login type and if it was successful or not
 # passwords and failures have much higher weights
-login_types = ["password", "ssh key"]
+login_types = ["password", "public key"]
 login_weights = [99, 1]
 
 result_types = ["Failed", "Successful"]
@@ -34,15 +34,27 @@ current_time = time() - 50000000
 delta_t = [t/10 for t in range(0,100,2)]
 time_weights = random.choices(range(150), k=50)
 
+outlier_index_1 = random.randint(1000,10000)
+outlier_index_2 = random.randint(1000,10000)
+outlier_index_3 = random.randint(1000,10000)
+
 for i in range(10000):
     user = random.choices(users, weights=user_weights)[0]
     ip = random.choices(ips, weights=ip_weights)[0]
     login_type = random.choices(login_types, weights=login_weights)[0]
     result = random.choices(result_types, weights=result_weights)[0]
 
+    # outliers:
+    if i == outlier_index_1:
+        ip = "10.1.1.5"
+    elif i == outlier_index_2:
+        login_type = "session id"
+    elif i == outlier_index_3:
+        current_time += 200
+
     # occasionally have some special events :)
-    event = random.randint(2,200)
-    if event > 5 and event < 197:
+    event = random.randint(2,250)
+    if event > 5 and event < 247:
         # normal entry
         print("{:.0f} [logd] ".format(current_time) + result + " " +
               login_type + " for account " + user + " from " + ip)
@@ -51,9 +63,13 @@ for i in range(10000):
         print("{:.0f} [logd] ".format(current_time) +
               "repeated {} times: [ ".format(event) + result + " " +
               login_type + " for account " + user + " from " + ip + " ]")
-    else:
-        # Error
+    elif event == 247:
+        # parsing error
         print("{:.0f} [logd] ".format(current_time) + "Error: " +
-              "Failed to do a thing")
+              "unexpected character '%'")
+    else:
+        # unexpected close error
+        print("{:.0f} [logd] ".format(current_time) + "Error: " +
+              "Connection closed")
 
     current_time += random.choices(delta_t, weights=time_weights)[0]
