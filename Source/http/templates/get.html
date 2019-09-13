@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Workshop 1</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="header">
+    <div class="topbar">
+      <a class="headerlink" href="/"><b>Home</b></a>
+      <a class="headerlink" href="/get">GET</a>
+      <a class="headerlink" href="/post">POST</a>
+      <a class="headerlink" href="/cookies">Cookies</a>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+  <div class="main">
+    <h2>Page of Art</h2>
+    <h3>Publicly Available Art</h3>
+    <ul>
+      <li><a href="/art?artist=marc&work=1">Blue Horse I</a>
+      <li><a href="/art?artist=marc&work=2">Little Blue Horse</a>
+      <li><a href="/art?artist=marc&work=3">Two Blue Horses</a>
+      <li><a href="/art?artist=marc&work=4">Red and Blue Horse</a>
+      <li><a href="/art?artist=marc&work=5">Two Horses Red and Blue</a>
+      <li><a href="/art?artist=marc&work=6">The Little Blue Horses</a>
+      <li><a href="/art?artist=marc&work=7">The Large Blue Horses</a>
+      <li><a href="/art?artist=marc&work=8">The Tower of Blue Horses</a>
+    </ul>
+  </div>
+</body>
+</html>

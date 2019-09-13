@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "Lato";
+  src: url("fonts/Lato-Regular.woff2") format("woff2"),
+       url("fonts/Lato-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Lato";
+  src: url("fonts/Lato-Bold.woff2") format("woff2"),
+       url("fonts/Lato-Bold.woff") format("woff");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("fonts/Lato-Italic.woff2") format("woff2"),
+       url("fonts/Lato-Italic.woff") format("woff");
+  font-style: italic;
+}
+
+body {
+  background-color: #002E62;
+  margin: 0;
+}
+
+.header {
+  padding: 0 10% 0 10%;
+  position: relative;
+  background-image: url("images/banner.png");
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  font-family: "Lato";
+  color: white;
+  font-size: 25px;
+  margin: 0 0 0 3px;
+  text-align: left;
+  float:left;
+}
+
+a.headerlink {
+  outline: none;
+  text-decoration: none;
+  color: white;
+  padding: 6px 9px 9px 9px;
+}
+
+a.headerlink:hover {
+  border-bottom: 3px solid #CCC;
+}
+
+a.headerlink:focus {
+  color: white;
+}
+
+a.headerlink:active {
+  color: #444;
+}
+
+.topbar, .profilebar {
+  font-family: "Lato";
+  color: white;
+  background-color: #002E62;
+  font-size: 20px;
+  height: 35px;
+  padding: 9px 10px 0 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.profilebar {
+  float:right;
+}
+.topbar {
+  float:left;
+}
+
+.headerimg {
+  box-shadow: inset 0 0 10px 0 black;
+}
+
+.main {
+  padding: 10px 60px 10px 60px;
+  font-family: "Lato";
+  width: 70%;
+  background-color: white;
+  margin: 0 auto;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding-bottom: 2em;
+  margin-bottom: 3em;
+}
+
+.left_col {
+  float:left;
+  width: 40%
+}
+
+.right_col {
+  float:right;
+  width: 60%
+}
+
+.msgbox {
+  border: 1px solid black;
+  margin: 2px 0 2px 0;
+  vertical-align: top;
+}
+
+.usrbox {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 3px;
+    border-right: 1px solid black;
+    text-align: center;
+    background-color: #CCC;
+    max-width: 25%;
+}
+
+.txtbox {
+    display: inline-block;
+    width: 70%;
+    padding: 3px;
+    vertical-align: middle;
+}
+
+h2 {
+  font-family: "Lato";
+  color: #002E62;
+  margin-top: 3em;
+  font-size: 28px;
+  text-align: center;
+}
+
+h3 {
+  font-family: "Lato";
+  margin-top: 1.5em;
+  font-size: 22px;
+}

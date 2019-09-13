@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Workshop 1</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="header">
+    <div class="topbar">
+      <a class="headerlink" href="/"><b>Home</b></a>
+      <a class="headerlink" href="/get">GET</a>
+      <a class="headerlink" href="/post">POST</a>
+      <a class="headerlink" href="/cookies">Cookies</a>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+  <div class="main">
+    <h2>Upload an Image</h2>
+    <div style="text-align:center">
+      <br>
+      <form action="/upload" enctype="multipart/form-data" method="post">
+        <input type="file" id="image" name="image" accept="image/png, image/jpeg"/><br><br>
+        <input type="hidden" id="submit" value="Upload"/>
+      </form>
+      <br><i>(64 KiB max)</i><br>
+    </div>
+    {% if image_path %}
+    <br>
+    <img style="display:block; margin:auto;" src="{{ image_path }}"/>
+    {% elif error %}
+    <br>
+    <div style="text-align:center">
+      <b>ERROR: invalid extention</b>
+    </div>
+    {% endif %}
+  </div>
+  <script>
+  var upload_field = document.getElementById("image");
+  var submit_button = document.getElementById("submit");
+  upload_field.onchange = function() {
+    if (this.files[0].size > 65536){
+      submit_button.type = "hidden";
+      this.value = "";
+    }
+    else {
+      submit_button.type = "submit";
+    };
+  };
+  </script>
+</body>
+</html>

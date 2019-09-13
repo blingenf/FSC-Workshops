@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>Workshop 1</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="header">
+    <div class="topbar">
+      <a class="headerlink" href="/"><b>Home</b></a>
+      <a class="headerlink" href="/get">GET</a>
+      <a class="headerlink" href="/post">POST</a>
+      <a class="headerlink" href="/cookies">Cookies</a>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+  <div class="main">
+    <h2>HTTP Workshop Homepage</h2>
+    <h3>Detected Client Information</h3>
+    <div style="margin: 0 30% 0 30%">
+      <img width="49%" src="{{ url_for('static', filename='images/browser/'+browser+'.png') }}"/>
+      <img width="49%" src="{{ url_for('static', filename='images/os/'+os+'.png') }}"/><br><br>
+    </div>
+    <div style="text-align: center; font-size: 22px">You are using <b>{{ browser }}</b> on a <b>{{ os }}</b> computer.</div>
+  </div>
+</body>
+</html>
